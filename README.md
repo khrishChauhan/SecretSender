@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="https://raw.githubusercontent.com/<your-username>/SecretSender/main/public/banner.png" width="100%" alt="SecretSender Banner">
+  <img src="https://raw.githubusercontent.com/<khrishChauhan>/SecretSender/main/public/banner.png" width="100%" alt="SecretSender Banner">
 </p>
 
 <h1 align="center">SecretSender 💌</h1>
@@ -22,14 +22,14 @@ It’s designed to encourage open and fun interactions — just share your profi
 - 🔐 Anonymous message sending  
 - ✉️ Personalized message links  
 - 💡 AI-powered message suggestions (via OpenRouter API)  
-- ⚡ Built with **Next.js 14**, **TailwindCSS**, and **TypeScript**  
+- ⚡ Built with **Next.js 16**, **TailwindCSS**, and **TypeScript**  
 - ☁️ Hosted on **Vercel**
 
 ---
 
 ## 🛠️ Tech Stack
 
-- **Frontend:** Next.js 14, React, TailwindCSS  
+- **Frontend:** Next.js 16, React, TailwindCSS  
 - **Backend:** Next.js API Routes  
 - **AI:** OpenRouter (OpenAI-compatible endpoint)  
 - **Deployment:** Vercel
