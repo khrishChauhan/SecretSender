@@ -1,7 +1,3 @@
-<p align="center">
-  <img src="blob:https://gemini.google.com/84ce2b6a-907f-434b-beba-b68273b7d000" width="100%" alt="SecretSender Banner">
-</p>
-
 <h1 align="center">SecretSender 💌</h1>
 
 <p align="center">
