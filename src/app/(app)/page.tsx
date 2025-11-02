@@ -10,6 +10,7 @@ import messages from '@/message.json';
 import UserCard from "@/components/UserCard";
 import { useEffect, useState } from "react";
 import { Loader2, RefreshCcw } from 'lucide-react';
+import Footer from "@/components/Footer"
 
 import {
   Carousel,
@@ -18,6 +19,8 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from '@/components/ui/carousel';
+import MessageCarousel from '@/components/Carousel';
+import AnimatedTagline from '@/components/AnimateTagline';
 
 export default function Home() {
 
@@ -62,68 +65,49 @@ export default function Home() {
 
   return (
     <>
-      {/* Main content */}
-      <main className="flex grow flex-col items-center justify-center px-4 md:px-24 py-12 bg-gray-800 text-white">
-        <section className="text-center mb-8 md:mb-12">
-          <h1 className="text-3xl md:text-5xl font-bold">
-            Every secret deserves to be heard
-          </h1>
-          <p className="mt-3 md:mt-4 text-base md:text-lg">
-            SecretSender - Where your identity remains a secret.
-          </p>
+
+
+      <main className="flex grow flex-col items-center justify-center px-6 md:px-24 py-24 bg-linear-to-b from-gray-900 via-gray-900 to-gray-950 text-white relative overflow-hidden">
+
+
+        <div className="absolute inset-0 overflow-hidden  z-0">
+          <div className="absolute top-10 left-20 w-72 h-72 bg-purple-500/20 rounded-full blur-3xl animate-pulse-slow"></div>
+          <div className="absolute bottom-10 right-20 w-64 h-64 bg-indigo-500/20 rounded-full blur-3xl animate-pulse-slow"></div>
+        </div>
+
+
+        <section className="relative text-center z-10 mt-10 mb-25">
+          <AnimatedTagline/>
+          
         </section>
 
-        {/* Carousel for Messages */}
-        <Carousel
-          plugins={[Autoplay({ delay: 2000 })]}
-          className="w-full max-w-lg md:max-w-xl"
-        >
-          <CarouselContent>
-            {messages.map((message, index) => (
-              <CarouselItem key={index} className="p-4">
-                <Card>
-                  <CardHeader>
-                    <CardTitle>{message.title}</CardTitle>
-                  </CardHeader>
-                  <CardContent className="flex flex-col md:flex-row items-start space-y-2 md:space-y-0 md:space-x-4">
-                    <Mail className="flex shrink-0" />
-                    <div>
-                      <p>{message.content}</p>
-                      <p className="text-xs text-muted-foreground">
-                        {message.received}
-                      </p>
-                    </div>
-                  </CardContent>
-                </Card>
-              </CarouselItem>
-            ))}
-          </CarouselContent>
-        </Carousel>
 
-        <div className='pt-30 '>
+
+        <MessageCarousel/>
+
+        <div className='pt-30 z-5'>
           <div className="  py-10 px-5">
-           <div className='flex justify-center items-center mb-10 gap-3'>
-             <h1 className="text-3xl  font-bold text-center mt-3 ">
-              Meet Secret Senders
-            </h1>
 
-            <div className="flex">
-              <Button
-                className="mt-4 rounded-full"
-                variant="outline"
-                onClick={(e) => {
-                  e.preventDefault();
-                  refresh();
-                }}
-              >
-                {loading ? (
-                  <Loader2 className="h-4 w-4 animate-spin" />
-                ) : (
-                  <RefreshCcw className="h-4 w-4 text-black" />
-                )}
-              </Button>
+
+            <div className="pt-20 py-10 px-5 relative z-10 flex justify-center items-center gap-4 mb-10">
+                <h1 className="text-3xl md:text-4xl font-bold text-center select-none">
+                  Meet <span className="text-indigo-400">Secret Senders</span>
+                </h1>
+
+                <Button
+                  type="button"
+                  onClick={() => refresh()}
+                  disabled={loading}
+                  className="rounded-full border border-indigo-500/30 text-indigo-400 hover:text-white hover:bg-indigo-500/20 transition-all duration-300 active:scale-95"
+                >
+                  {loading ? (
+                    <Loader2 className="h-5 w-5 animate-spin" />
+                  ) : (
+                    <RefreshCcw className="h-5 w-5" />
+                  )}
+                </Button>
             </div>
-           </div>
+
 
             <div className="grid gap-5  pt-3  justify-items-center  grid-cols-1 lg:grid-cols-2   ">
               {users
@@ -141,10 +125,8 @@ export default function Home() {
 
       </main>
 
-      {/* Footer */}
-      <footer className="text-center p-4 md:p-6 bg-gray-900 text-white flex justify-around">
-        <div>© {new Date().getFullYear()} SecretSender. All rights reserved.</div>
-      </footer>
+      <Footer />
+
     </>
   );
 }
