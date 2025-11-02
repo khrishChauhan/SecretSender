@@ -8,7 +8,6 @@ import { Loader2 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Separator } from '@/components/ui/separator';
 import { CardHeader, CardContent, Card } from '@/components/ui/card';
-// ❌ REMOVED: import { useCompletion } from '@ai-sdk/react';  // ✨ CHANGED — not using this anymore
 import {
   Form,
   FormControl,
@@ -30,14 +29,14 @@ export default function SendMessage() {
   const params = useParams<{ username: string }>();
   const username = params.username;
 
-  // ✨ CHANGED: Local state for AI suggestions
+
   const [suggestions, setSuggestions] = useState<string[]>([
     "What's your favorite movie?",
     'Do you have any pets?',
     "What's your dream job?",
   ]);
 
-  // ✨ CHANGED: Separate loading state for AI suggestions
+
   const [isSuggestLoading, setIsSuggestLoading] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
 
@@ -51,7 +50,7 @@ export default function SendMessage() {
     form.setValue('content', message);
   };
 
-  // 📨 Form submission logic (unchanged)
+
   const onSubmit = async (data: z.infer<typeof messageSchema>) => {
     setIsLoading(true);
     try {
@@ -78,7 +77,7 @@ export default function SendMessage() {
     }
   };
 
-  // ✨ CHANGED: New function to fetch AI suggestions from your /api/suggest-message route
+
   const fetchSuggestedMessages = async () => {
     try {
       setIsSuggestLoading(true); // show loading
@@ -98,7 +97,7 @@ export default function SendMessage() {
     } catch (error) {
       console.error('Error fetching messages:', error);
     } finally {
-      setIsSuggestLoading(false); // stop loading
+      setIsSuggestLoading(false); 
     }
   };
 
@@ -108,7 +107,6 @@ export default function SendMessage() {
         Public Profile Link
       </h1>
 
-      {/* 💬 Message Form */}
       <Form {...form}>
         <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
           <FormField
@@ -143,10 +141,9 @@ export default function SendMessage() {
         </form>
       </Form>
 
-      {/* 💡 Suggestion Section */}
       <div className="space-y-4 my-8">
         <div className="space-y-2">
-          {/* ✨ CHANGED — Suggest Messages button calls our new fetchSuggestedMessages */}
+        
           <Button
             onClick={fetchSuggestedMessages}
             className="my-4"
@@ -157,7 +154,6 @@ export default function SendMessage() {
           <p>Click on any message below to select it.</p>
         </div>
 
-        {/* ✨ CHANGED — Display dynamic suggestions from AI */}
         <Card>
           <CardHeader>
             <h3 className="text-xl font-semibold">Messages</h3>

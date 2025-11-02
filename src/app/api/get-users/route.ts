@@ -5,10 +5,10 @@ export async function GET() {
   await dbConnect();
 
   try {
-    // Fetch only verified users, returning only _id and username
+
     const users = await UserModel.find(
       { isverified: true },
-      { username: 1 } // projection: only username and _id
+      { _id: 0, username: 1} 
     ).lean();
 
     return Response.json(

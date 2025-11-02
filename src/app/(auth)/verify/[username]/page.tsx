@@ -59,6 +59,7 @@ export default function VerifyAccount() {
             Verify Your Account
           </h1>
           <p className="mb-4">Enter the verification code sent to your email</p>
+          <p className="mb-4 text-sm text-gray-400">Didn't receive it? Please check in your spam</p>
         </div>
         <Form {...form}>
           <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">

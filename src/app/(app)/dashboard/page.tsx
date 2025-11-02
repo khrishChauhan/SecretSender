@@ -125,7 +125,7 @@ function UserDashboard() {
   };
 
   if (!session || !session.user) {
-    return <div></div>;
+    return <div className='text-center text-4xl font-bold mt-10'>Please Login</div>;
   }
 
   const { username } = session.user as User;
@@ -143,7 +143,7 @@ function UserDashboard() {
   };
 
   return (
-    <div className="my-8 mx-4 md:mx-8 lg:mx-auto p-6 bg-white rounded w-full max-w-6xl">
+    <div className="my-8  md:mx-8   p-6 bg-white rounded w-auto overflow-hidden ">
       <h1 className="text-4xl font-bold mb-4">User Dashboard</h1>
 
       <div className="mb-4">
