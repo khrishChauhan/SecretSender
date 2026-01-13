@@ -14,6 +14,7 @@ import { User } from 'next-auth';
 import { useSession } from 'next-auth/react';
 import React, { useCallback, useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
+import Link from 'next/link';
 import { acceptMessageSchema } from '@/schemas/acceptMessageSchema';
 
 function UserDashboard() {
@@ -113,7 +114,25 @@ function UserDashboard() {
   };
 
   if (!session || !session.user) {
-    return <div className="text-center text-4xl font-bold mt-10 text-white">Please Login</div>;
+    return (
+      <div className="flex justify-center items-center min-h-screen bg-gray-950">
+        <div className="w-full max-w-md p-8 space-y-8 bg-gray-900 rounded-lg shadow-md text-center">
+          <div className="space-y-4">
+            <h2 className="text-2xl font-extrabold tracking-tight lg:text-4xl mb-6 text-white">
+              Please Login
+            </h2>
+            <p className="mb-4 text-gray-400">
+              You need to be logged in to access the dashboard.
+            </p>
+          </div>
+          <Link href="/sign-in">
+            <Button className="w-full bg-slate-100 text-black hover:bg-slate-200">
+              Login
+            </Button>
+          </Link>
+        </div>
+      </div>
+    );
   }
 
   const { username } = session.user as User;
