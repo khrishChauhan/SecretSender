@@ -58,6 +58,33 @@ function Navbar() {
             </Button>
           </Link>
 
+          <Link href="/room">
+            <Button
+              variant="ghost"
+              className="text-white hover:text-indigo-400 hover:bg-transparent transition-colors"
+            >
+              Room
+            </Button>
+          </Link>
+
+          <Link href="/join">
+            <Button
+              variant="ghost"
+              className="text-white hover:text-indigo-400 hover:bg-transparent transition-colors"
+            >
+              Join
+            </Button>
+          </Link>
+
+          <Link href="/create">
+            <Button
+              variant="ghost"
+              className="text-white hover:text-indigo-400 hover:bg-transparent transition-colors"
+            >
+              Create
+            </Button>
+          </Link>
+
           </div>
 
           {session ? (

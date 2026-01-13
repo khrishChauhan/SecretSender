@@ -113,7 +113,7 @@ function UserDashboard() {
   };
 
   if (!session || !session.user) {
-    return <div className="text-center text-4xl font-bold mt-10">Please Login</div>;
+    return <div className="text-center text-4xl font-bold mt-10 text-white">Please Login</div>;
   }
 
   const { username } = session.user as User;
@@ -129,63 +129,65 @@ function UserDashboard() {
   };
 
   return (
-    <div className="my-8 md:mx-8 p-6 bg-white rounded-lg shadow-sm w-auto overflow-hidden">
-      <h1 className="text-4xl font-bold mb-4">User Dashboard</h1>
+    <div className="min-h-screen bg-gray-950 text-white p-8">
+      <div className="max-w-6xl mx-auto p-6 bg-gray-900 rounded-lg shadow-sm w-auto overflow-hidden">
+        <h1 className="text-4xl font-bold mb-4">User Dashboard</h1>
 
-      <div className="mb-4">
-        <h2 className="text-lg font-semibold mb-2">Copy Your Unique Link</h2>
-        <div className="flex flex-col md:flex-row items-center gap-2">
-          <input
-            type="text"
-            value={profileUrl}
-            disabled
-            className="input input-bordered w-full p-2 border rounded-md bg-gray-50"
-          />
-          <Button onClick={copyToClipboard}>Copy</Button>
-        </div>
-      </div>
-
-      <div className="mb-4 flex items-center">
-        <Switch
-          {...register('acceptMessage')}
-          checked={!!acceptMessages}
-          onCheckedChange={handleSwitchChange}
-          disabled={isSwitchLoading}
-        />
-        <span className="ml-2">
-          Accept Messages: {acceptMessages ? 'On' : 'Off'}
-        </span>
-      </div>
-
-      <Separator />
-
-      <Button
-        className="mt-4"
-        variant="outline"
-        onClick={(e) => {
-          e.preventDefault();
-          fetchMessages(true);
-        }}
-      >
-        {isLoading ? (
-          <Loader2 className="h-4 w-4 animate-spin" />
-        ) : (
-          <RefreshCcw className="h-4 w-4" />
-        )}
-      </Button>
-
-      <div className="mt-4 grid grid-cols-1 md:grid-cols-2 gap-6">
-        {messages.length > 0 ? (
-          messages.map((message) => (
-            <MessageCard
-              key={String(message._id)}
-              message={message}
-              onMessageDelete={handleDeleteMessage}
+        <div className="mb-4">
+          <h2 className="text-lg font-semibold mb-2">Copy Your Unique Link</h2>
+          <div className="flex flex-col md:flex-row items-center gap-2">
+            <input
+              type="text"
+              value={profileUrl}
+              disabled
+              className="input input-bordered w-full p-2 border border-gray-700 rounded-md bg-gray-800 text-white"
             />
-          ))
-        ) : (
-          <p>No messages to display.</p>
-        )}
+            <Button onClick={copyToClipboard}>Copy</Button>
+          </div>
+        </div>
+
+        <div className="mb-4 flex items-center">
+          <Switch
+            {...register('acceptMessage')}
+            checked={!!acceptMessages}
+            onCheckedChange={handleSwitchChange}
+            disabled={isSwitchLoading}
+          />
+          <span className="ml-2 text-white">
+            Accept Messages: {acceptMessages ? 'On' : 'Off'}
+          </span>
+        </div>
+
+        <Separator />
+
+        <Button
+          className="mt-4 bg-gray-800 text-white border-gray-700 hover:bg-gray-700"
+          variant="outline"
+          onClick={(e) => {
+            e.preventDefault();
+            fetchMessages(true);
+          }}
+        >
+          {isLoading ? (
+            <Loader2 className="h-4 w-4 animate-spin" />
+          ) : (
+            <RefreshCcw className="h-4 w-4" />
+          )}
+        </Button>
+
+        <div className="mt-4 grid grid-cols-1 md:grid-cols-2 gap-6">
+          {messages.length > 0 ? (
+            messages.map((message) => (
+              <MessageCard
+                key={String(message._id)}
+                message={message}
+                onMessageDelete={handleDeleteMessage}
+              />
+            ))
+          ) : (
+            <p className="text-gray-400">No messages to display.</p>
+          )}
+        </div>
       </div>
     </div>
   );

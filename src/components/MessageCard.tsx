@@ -35,10 +35,10 @@ export function MessageCard({ message, onMessageDelete }: MessageCardProps) {
         `/api/delete-message/${message._id}`
       );
       toast({
-      title: String(response.data?.message || 'Message deleted successfully'),
-    });
+        title: String(response.data?.message || 'Message deleted successfully'),
+      });
 
-    onMessageDelete(String(message._id));
+      onMessageDelete(String(message._id));
 
     } catch (error) {
       const axiosError = error as AxiosError<ApiResponse<null>>;
@@ -48,11 +48,11 @@ export function MessageCard({ message, onMessageDelete }: MessageCardProps) {
           axiosError.response?.data.message ?? 'Failed to delete message',
         variant: 'destructive',
       });
-    } 
+    }
   };
 
   return (
-    <Card className="card-bordered">
+    <Card className="card-bordered bg-gray-800 text-white border-gray-700">
       <CardHeader>
         <div className="flex justify-between items-center">
           <CardTitle>{message.content}</CardTitle>
@@ -81,7 +81,7 @@ export function MessageCard({ message, onMessageDelete }: MessageCardProps) {
             </AlertDialogContent>
           </AlertDialog>
         </div>
-        <div className="text-sm">
+        <div className="text-sm text-gray-400">
           {dayjs(message.createdAt).format('MMM D, YYYY h:mm A')}
         </div>
       </CardHeader>
