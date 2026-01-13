@@ -4,7 +4,8 @@ import { Server as SocketIOServer } from "socket.io";
 import { handleSocketConnection } from "./socketManager";
 
 const dev = process.env.NODE_ENV !== "production";
-const nextApp = next({ dev });
+// Disable Turbopack to avoid compilation panic errors
+const nextApp = next({ dev, turbopack: false });
 const handle = nextApp.getRequestHandler();
 
 // Prepare Next.js app first

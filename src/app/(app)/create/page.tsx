@@ -1,6 +1,6 @@
 "use client";
 
-import { io } from "socket.io-client";
+import { createSocket } from "@/lib/socket";
 import React, { useEffect, useState } from "react";
 
 export default function CreateRoomPage() {
@@ -10,7 +10,7 @@ export default function CreateRoomPage() {
     const [input, setInput] = useState("");
 
     useEffect(() => {
-        const newSocket = io();
+        const newSocket = createSocket();
         setSocket(newSocket);
 
         newSocket.on("roomCreated", (code: string) => setRoomCode(code));

@@ -1,6 +1,6 @@
 "use client";
 
-import { io } from "socket.io-client";
+import { createSocket } from "@/lib/socket";
 import React, { useEffect, useState } from "react";
 
 export default function JoinRoomPage() {
@@ -11,7 +11,7 @@ export default function JoinRoomPage() {
   const [isJoined, setIsJoined] = useState(false);
 
   useEffect(() => {
-    const newSocket = io();
+    const newSocket = createSocket();
     setSocket(newSocket);
 
     newSocket.on("joinedRoom", (data: { room: string; user: string }) => {

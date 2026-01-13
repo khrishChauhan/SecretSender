@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "tsx watch src/server/server.ts",
     "build": "next build",
-    "start": "NODE_ENV=production tsx src/server/server.ts",
+    "start": "set NODE_ENV=production&& tsx src/server/server.ts",
     "lint": "next lint"
   },
   "dependencies": {
