@@ -15,14 +15,13 @@ export function createSocket(): Socket {
     const socketUrl = process.env.NEXT_PUBLIC_SOCKET_URL;
 
     // If URL is provided, connect to it; otherwise use same origin (dev mode)
-    const socket = socketUrl
-        ? io(socketUrl, {
-            transports: ["websocket", "polling"],
-            withCredentials: true,
-        })
+        ?io(socketUrl, {
+        transports: ["websocket"], // Force websocket to avoid polling issues
+        withCredentials: true,
+    })
         : io({
-            transports: ["websocket", "polling"],
-        });
+        transports: ["websocket"],
+    });
 
     return socket;
 }

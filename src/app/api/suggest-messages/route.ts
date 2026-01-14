@@ -1,16 +1,11 @@
 import { NextResponse } from 'next/server';
-import OpenAI from 'openai';
+import Groq from 'groq-sdk';
 
 export const runtime = 'edge';
 
-// Initialize OpenRouter-compatible OpenAI client
-const openai = new OpenAI({
-  baseURL: 'https://openrouter.ai/api/v1',
-  apiKey: process.env.OPENROUTER_API_KEY!,
-  defaultHeaders: {
-    'HTTP-Referer': 'http://localhost:3000', // your app URL
-    'X-Title': 'MysteryMessage', // your site name
-  },
+// Initialize Groq client
+const groq = new Groq({
+  apiKey: process.env.GROQ_API_KEY!,
 });
 
 export async function POST() {
@@ -19,8 +14,8 @@ export async function POST() {
     3 casual fun anonymous shortest (4 words max ) fun Qs, sep by ||, no intro
     `;
 
-    const completion = await openai.chat.completions.create({
-      model: 'google/gemini-2.0-flash-001', // ✅ free OpenRouter model
+    const completion = await groq.chat.completions.create({
+      model: 'llama-3.3-70b-versatile', // Groq's Llama Versatile model
       messages: [
         {
           role: 'system',
