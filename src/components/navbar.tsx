@@ -16,7 +16,7 @@ function Navbar() {
   return (
     <nav className="sticky top-0 z-50 bg-linear-to-r from-gray-900 via-gray-800 to-black text-white shadow-lg">
       <div className="container mx-auto px-4 py-3 flex justify-between items-center">
-        
+
         <Link
           href="/"
           className="text-2xl font-extrabold tracking-tight hover:text-gray-300 transition-colors"
@@ -24,7 +24,7 @@ function Navbar() {
           Secret<span className="text-indigo-400">Sender</span>
         </Link>
 
-       
+
         <button
           className="md:hidden focus:outline-none"
           onClick={() => setMenuOpen(!menuOpen)}
@@ -32,84 +32,91 @@ function Navbar() {
           {menuOpen ? <X size={26} /> : <Menu size={26} />}
         </button>
 
-   
+
         <div
-          className={`${
-            menuOpen ? " flex flex-row gap-18 " : "hidden"
-          } md:flex flex-col md:flex-row absolute md:static top-14 left-0 w-full md:w-auto bg-gray-900 md:bg-transparent shadow-md md:shadow-none p-5 md:p-0 gap-4 md:gap-6 items-center justify-center transition-all duration-300`}
+          className={`${menuOpen ? "flex" : "hidden"
+            } md:flex flex-col md:flex-row absolute md:static top-14 left-0 w-full md:w-auto bg-gray-900/95 md:bg-transparent backdrop-blur-sm md:backdrop-blur-none shadow-lg md:shadow-none py-4 px-6 md:p-0 gap-1 md:gap-4 items-stretch md:items-center transition-all duration-300`}
         >
-          
-          <div>
-            <Link href="/">
-            <Button
-              variant="ghost"
-              className="text-white hover:text-indigo-400 hover:bg-transparent transition-colors"
-            >
-              Home
-            </Button>
-          </Link>
-
-          <Link href="/dashboard">
-            <Button
-              variant="ghost"
-              className="text-white hover:text-indigo-400 hover:bg-transparent transition-colors"
-            >
-              Dashboard
-            </Button>
-          </Link>
-
-          <Link href="/room">
-            <Button
-              variant="ghost"
-              className="text-white hover:text-indigo-400 hover:bg-transparent transition-colors"
-            >
-              Room
-            </Button>
-          </Link>
-
-          <Link href="/join">
-            <Button
-              variant="ghost"
-              className="text-white hover:text-indigo-400 hover:bg-transparent transition-colors"
-            >
-              Join
-            </Button>
-          </Link>
-
-          <Link href="/create">
-            <Button
-              variant="ghost"
-              className="text-white hover:text-indigo-400 hover:bg-transparent transition-colors"
-            >
-              Create
-            </Button>
-          </Link>
-
-          </div>
-
-          {session ? (
-            <>
-              <span className="hidden sm:inline text-gray-300 text-sm">
-                Welcome,&nbsp;
-                <span className="font-medium text-indigo-300">
-                  {user.username || user.email?.split("@")[0]}
-                </span>
-              </span>
-
+          {/* Navigation Links */}
+          <div className="flex flex-col md:flex-row items-stretch md:items-center gap-1 md:gap-2">
+            <Link href="/" onClick={() => setMenuOpen(false)}>
               <Button
-                onClick={() => signOut()}
-                className="bg-indigo-500 text-white hover:bg-indigo-600 transition-colors"
+                variant="ghost"
+                className="w-full md:w-auto justify-start md:justify-center text-white hover:text-indigo-400 hover:bg-white/10 md:hover:bg-transparent transition-colors"
               >
-                Logout
-              </Button>
-            </>
-          ) : (
-            <Link href="/sign-in">
-              <Button className="bg-indigo-500 text-white hover:bg-indigo-600 transition-colors">
-                Login
+                Home
               </Button>
             </Link>
-          )}
+
+            <Link href="/dashboard" onClick={() => setMenuOpen(false)}>
+              <Button
+                variant="ghost"
+                className="w-full md:w-auto justify-start md:justify-center text-white hover:text-indigo-400 hover:bg-white/10 md:hover:bg-transparent transition-colors"
+              >
+                Dashboard
+              </Button>
+            </Link>
+
+            <Link href="/room" onClick={() => setMenuOpen(false)}>
+              <Button
+                variant="ghost"
+                className="w-full md:w-auto justify-start md:justify-center text-white hover:text-indigo-400 hover:bg-white/10 md:hover:bg-transparent transition-colors"
+              >
+                Room
+              </Button>
+            </Link>
+
+            <Link href="/join" onClick={() => setMenuOpen(false)}>
+              <Button
+                variant="ghost"
+                className="w-full md:w-auto justify-start md:justify-center text-white hover:text-indigo-400 hover:bg-white/10 md:hover:bg-transparent transition-colors"
+              >
+                Join
+              </Button>
+            </Link>
+
+            <Link href="/create" onClick={() => setMenuOpen(false)}>
+              <Button
+                variant="ghost"
+                className="w-full md:w-auto justify-start md:justify-center text-white hover:text-indigo-400 hover:bg-white/10 md:hover:bg-transparent transition-colors"
+              >
+                Create
+              </Button>
+            </Link>
+          </div>
+
+          {/* Divider for mobile */}
+          <div className="md:hidden border-t border-gray-700 my-2"></div>
+
+          {/* Auth Section */}
+          <div className="flex flex-col md:flex-row items-stretch md:items-center gap-2">
+            {session ? (
+              <>
+                <span className="text-gray-300 text-sm px-3 py-2 md:px-0">
+                  Welcome,{" "}
+                  <span className="font-medium text-indigo-300">
+                    {user.username || user.email?.split("@")[0]}
+                  </span>
+                </span>
+
+                <Button
+                  onClick={() => {
+                    signOut();
+                    setMenuOpen(false);
+                  }}
+                  className="w-full md:w-auto bg-indigo-500 text-white hover:bg-indigo-600 transition-colors"
+                >
+                  Logout
+                </Button>
+              </>
+            ) : (
+              <Link href="/sign-in" onClick={() => setMenuOpen(false)}>
+                <Button className="w-full md:w-auto bg-indigo-500 text-white hover:bg-indigo-600 transition-colors">
+                  Login
+                </Button>
+              </Link>
+            )}
+          </div>
         </div>
       </div>
     </nav>

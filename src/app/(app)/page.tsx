@@ -77,35 +77,35 @@ export default function Home() {
 
 
         <section className="relative text-center z-10 mt-10 mb-25">
-          <AnimatedTagline/>
-          
+          <AnimatedTagline />
+
         </section>
 
 
 
-        <MessageCarousel/>
+        <MessageCarousel />
 
         <div className='pt-30 z-5'>
           <div className="  py-10 px-5">
 
 
             <div className="pt-20 py-10 px-5 relative z-10 flex justify-center items-center gap-4 mb-10">
-                <h1 className="text-3xl md:text-4xl font-bold text-center select-none">
-                  Meet <span className="text-indigo-400">Secret Senders</span>
-                </h1>
+              <h1 className="text-3xl md:text-4xl font-bold text-center select-none">
+                Meet <span className="text-indigo-400">Secret Senders</span>
+              </h1>
 
-                <Button
-                  type="button"
-                  onClick={() => refresh()}
-                  disabled={loading}
-                  className="rounded-full border border-indigo-500/30 text-indigo-400 hover:text-white hover:bg-indigo-500/20 transition-all duration-300 active:scale-95"
-                >
-                  {loading ? (
-                    <Loader2 className="h-5 w-5 animate-spin" />
-                  ) : (
-                    <RefreshCcw className="h-5 w-5" />
-                  )}
-                </Button>
+              <Button
+                type="button"
+                onClick={() => refresh()}
+                disabled={loading}
+                className="rounded-full border border-indigo-500/30 text-indigo-400 hover:text-white hover:bg-indigo-500/20 transition-all duration-300 active:scale-95"
+              >
+                {loading ? (
+                  <Loader2 className="h-5 w-5 animate-spin" />
+                ) : (
+                  <RefreshCcw className="h-5 w-5" />
+                )}
+              </Button>
             </div>
 
 
