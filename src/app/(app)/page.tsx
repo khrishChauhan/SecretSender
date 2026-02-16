@@ -67,7 +67,7 @@ export default function Home() {
     <>
 
 
-      <main className="flex grow flex-col items-center justify-center px-6 md:px-24 py-24 bg-linear-to-b from-gray-900 via-gray-900 to-gray-950 text-white relative overflow-hidden">
+      <main className="flex grow flex-col items-center justify-center px-6 md:px-24 py-24 bg-gradient-to-b from-gray-900 via-gray-900 to-gray-950 text-white relative overflow-hidden">
 
 
         <div className="absolute inset-0 overflow-hidden  z-0">
@@ -90,9 +90,9 @@ export default function Home() {
 
 
             <div className="pt-20 py-10 px-5 relative z-10 flex justify-center items-center gap-4 mb-10">
-              <h1 className="text-3xl md:text-4xl font-bold text-center select-none">
+              <h2 className="text-3xl md:text-4xl font-bold text-center select-none">
                 Meet <span className="text-indigo-400">Secret Senders</span>
-              </h1>
+              </h2>
 
               <Button
                 type="button"

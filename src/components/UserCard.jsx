@@ -4,10 +4,17 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { toast } from "@/components/ui/use-toast";
 import { useRouter } from "next/navigation";
+import { useEffect, useState } from "react";
 
 export default function UserCard({ username }) {
-  const profileUrl = `${window.location.origin}/u/${username}`;
+  const [baseUrl, setBaseUrl] = useState("");
   const router = useRouter();
+
+  useEffect(() => {
+    setBaseUrl(window.location.origin);
+  }, []);
+
+  const profileUrl = `${baseUrl}/u/${username}`;
 
   const copyToClipboard = async () => {
     try {
@@ -44,9 +51,9 @@ export default function UserCard({ username }) {
   return (
     <Card className="w-full max-w-sm sm:max-w-md md:max-w-lg lg:max-w-xl border border-gray-700/40 rounded-2xl shadow-md hover:shadow-xl hover:-translate-y-1 bg-gray-900 text-white transition-all duration-300">
       <CardContent className="px-5 py-6 space-y-4">
-        <h1 className="text-2xl font-semibold text-center sm:text-left text-indigo-300 break-words">
+        <h3 className="text-2xl font-semibold text-center sm:text-left text-indigo-300 break-words">
           @{username}
-        </h1>
+        </h3>
 
         <div className="flex flex-col sm:flex-row justify-between sm:items-center gap-3">
           <p className="text-sm bg-gray-800 border border-gray-700 rounded-md px-3 py-2 text-gray-300 text-center sm:text-left break-all">
